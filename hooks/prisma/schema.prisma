@@ -49,11 +49,12 @@ model AvailableTrigger {
 }
 
 model Action {
-  id       String          @id @default(uuid())
-  zapId    String
-  zap      Zap             @relation(fields: [zapId], references: [id])
-  actionId String
-  type     AvailableAction @relation(fields: [actionId], references: [id])
+  id           String          @id @default(uuid())
+  zapId        String
+  zap          Zap             @relation(fields: [zapId], references: [id])
+  actionId     String
+  type         AvailableAction @relation(fields: [actionId], references: [id])
+  sortingOrder Int             @default(0)
 }
 
 model AvailableAction {
@@ -62,7 +63,7 @@ model AvailableAction {
   actions Action[]
 }
 
-model ZapRun { //whenever the req hit by webhook of other process,we need to perform actions called zaprun(ie. store in db)
+model ZapRun {
   id             String        @id @default(uuid())
   zapId          String
   metadata       Json
@@ -70,12 +71,11 @@ model ZapRun { //whenever the req hit by webhook of other process,we need to per
   zapRunOutboxId ZapRunOutbox?
 }
 
-model ZapRunOutbox { //for storing in kafka queue
+model ZapRunOutbox {
   id       String @id @default(uuid())
   zapRunId String @unique
   zapRun   ZapRun @relation(fields: [zapRunId], references: [id])
 }
-
 
 //outbox architecture used: ie. create atomic transation in single db(2 entries) and one for storing it, another will be used to run process
 //that will get it in kafka
