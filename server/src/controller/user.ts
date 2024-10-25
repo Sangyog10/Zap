@@ -9,6 +9,7 @@ export const singupController = async (
   res: Response
 ): Promise<any> => {
   const body = req.body;
+
   const parsedData = SignupSchema.safeParse(body);
 
   if (!parsedData.success) {

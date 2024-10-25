@@ -3,9 +3,9 @@ import { Appbar } from "../../components/Appbar";
 import { CheckFeature } from "../../components/CheckFeature";
 import { Input } from "../../components/Input";
 import { PrimaryButton } from "../../components/buttons/PrimaryButton";
-// import axios from "axios";
+import axios from "axios";
 import { useState } from "react";
-// import { BACKEND_URL } from "../config";
+import { BACKEND_URL } from "../config";
 import { useRouter } from "next/navigation";
 
 export default function () {
@@ -58,7 +58,20 @@ export default function () {
             ></Input>
 
             <div className="pt-4">
-              <PrimaryButton size="big" onClick={() => {}}>
+              <PrimaryButton
+                size="big"
+                onClick={async () => {
+                  const response = await axios.post(
+                    `${BACKEND_URL}/api/v1/user/signup`,
+                    {
+                      username: email,
+                      password,
+                      name,
+                    }
+                  );
+                  router.push("/login");
+                }}
+              >
                 Start Free
               </PrimaryButton>
             </div>

@@ -19,6 +19,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("../config");
 const singupController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
+    console.log(body);
     const parsedData = types_1.SignupSchema.safeParse(body);
     if (!parsedData.success) {
         return res.status(411).json({ message: "Incorrect Input" });

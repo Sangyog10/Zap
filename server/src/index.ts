@@ -11,4 +11,4 @@ app.use("/api/v1/user", userRouter);
 
 app.use("/api/v1/zap", zapRouter);
 
-app.listen(3000, () => console.log("server at 30000"));
+app.listen(3000, () => console.log("server at 3000"));
