@@ -1,18 +1,13 @@
 import { Router } from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
+import { createZap, getAllZaps, getZap } from "../controller/zap";
 
 const router = Router();
 
-router.post("/", authMiddleware, (req, res) => {
-  console.log("creat xap");
-});
+router.post("/", authMiddleware, createZap);
 
-router.get("/", authMiddleware, (req, res) => {
-  console.log("all");
-});
+router.get("/", authMiddleware, getAllZaps);
 
-router.get("/:zapId", authMiddleware, (req, res) => {
-  console.log("all");
-});
+router.get("/:zapId", authMiddleware, getZap);
 
 export const zapRouter = router;

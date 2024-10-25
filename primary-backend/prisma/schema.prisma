@@ -18,14 +18,17 @@ model User {
   name     String
   email    String
   password String
+  zaps     Zap[]
 }
 
 model Zap {
   id        String   @id @default(uuid())
   triggerId String
+  userId    Int
   trigger   Trigger? //either 1 or none
   actions   Action[] //multiple
   zapRuns   ZapRun[] //multiple
+  User      User     @relation(fields: [userId], references: [id])
 }
 
 //eg. if someone commment right ans in comment(its a trigger) , get theri name in notion list, send them money, email them (they are actions)
