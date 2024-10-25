@@ -1,18 +1,15 @@
 import { Router } from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
+import { singupController } from "../controller/user";
+import { signinController } from "../controller/user";
+import { getUser } from "../controller/user";
 
 const router = Router();
 
-router.post("/signup", (req, res) => {
-  console.log("signup");
-});
+router.post("/signup", singupController);
 
-router.get("/signin", (req, res) => {
-  console.log("signup");
-});
+router.post("/signin", signinController);
 
-router.get("/user", authMiddleware, (req, res) => {
-  console.log("usr");
-});
+router.get("/", authMiddleware, getUser);
 
 export const userRouter = router;
