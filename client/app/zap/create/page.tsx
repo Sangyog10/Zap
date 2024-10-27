@@ -35,6 +35,7 @@ export default function () {
   const router = useRouter();
   const { availableActions, availableTriggers } =
     useAvailableActionsAndTriggers();
+
   const [selectedTrigger, setSelectedTrigger] = useState<{
     id: string;
     name: string;
@@ -48,6 +49,7 @@ export default function () {
       metadata: any;
     }[]
   >([]);
+
   const [selectedModalIndex, setSelectedModalIndex] = useState<null | number>(
     null
   );
@@ -85,6 +87,7 @@ export default function () {
           Publish
         </PrimaryButton>
       </div>
+
       <div className="w-full min-h-screen bg-slate-200 flex flex-col justify-center">
         <div className="flex justify-center w-full">
           <ZapCell
@@ -133,6 +136,7 @@ export default function () {
           </div>
         </div>
       </div>
+
       {selectedModalIndex && (
         <Modal
           availableItems={
